@@ -1,0 +1,6 @@
+mongo_version: 3.2
+mongo_packages:
+- mongodb-org-server
+- mongodb-org-mongos
+- mongodb-org-shell
+- mongodb-org-tools
