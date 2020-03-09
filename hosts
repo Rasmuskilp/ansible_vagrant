@@ -7,5 +7,6 @@
 192.168.10.150
 
 [multivagrant:children]
+
 app
 db

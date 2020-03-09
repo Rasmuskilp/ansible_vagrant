@@ -1,3 +1,24 @@
-- hosts: all
-  roles:
-  - mongo
+---
+- hosts: db
+  remote_user: root
+  become: yes
+  tasks:
+  - name: MongoDB - Import public key
+    apt_key:
+      keyserver: hkp://keyserver.ubuntu.com:80
+      id: EA312927
+  - name: MongoDB - Add repository
+    apt_repository:
+      repo: 'deb <a href="http://repo.mongodb.org/apt/ubuntu">http://repo.mongodb.org/apt/ubuntu</a> xenial/mongodb-org/3.2 multiverse'
+#      filename: '/etc/apt/sources.list.d/mongodb-org-3.2.list'
+      state: present
+      update_cache: yes
+  - name: MongoDB - Install MongoDB
+    apt:
+      name: mongodb-org
+      state: present
+      update_cache: yes
+  - name: MongoDB - Running state
+    service:
+      name: mongod
+      state: started
